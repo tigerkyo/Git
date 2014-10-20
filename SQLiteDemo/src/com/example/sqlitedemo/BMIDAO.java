@@ -8,19 +8,19 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class BMIDAO {
+public class BMIDAO { //Test
 	
 	 public static final String TABLE_NAME = "BMI_Data";
      public static final String KEY_ID="_id";
      
-     // ¨ä¥¦ªí®æÄæ¦ì¦WºÙ
+     // å…¶å®ƒè¡¨æ ¼æ¬„ä½åç¨±
      
      public static final String Height_COLUMN = "Height";
      public static final String Weight_COLUMN = "weight";
      public static final String BMI_COLUMN = "bmi";     
      public static final String DATETIME_COLUMN = "datetime";
      
-     // ¨Ï¥Î¤W­±«Å§iªºÅÜ¼Æ«Ø¥ßªí®æªºSQL«ü¥O
+     // ä½¿ç”¨ä¸Šé¢å®£å‘Šçš„è®Šæ•¸å»ºç«‹è¡¨æ ¼çš„SQLæŒ‡ä»¤
      public static final String CREATE_TABLE = 
              "CREATE TABLE " + TABLE_NAME + " (" + 
              KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +            
@@ -29,26 +29,26 @@ public class BMIDAO {
              BMI_COLUMN + " REAL NOT NULL, " +
              DATETIME_COLUMN + " INTEGER NOT NULL)";     
      
-     // ¸ê®Æ®wª«¥ó    
+     // è³‡æ–™åº«ç‰©ä»¶    
      private SQLiteDatabase db;
      
-     // «Øºc¤l¡A¤@¯ëªºÀ³¥Î³£¤£»İ­n­×§ï
+     // å»ºæ§‹å­ï¼Œä¸€èˆ¬çš„æ‡‰ç”¨éƒ½ä¸éœ€è¦ä¿®æ”¹
      public BMIDAO(Context context) {
          db = MyDBHelper.getDataBase(context);
      }
      
-     // Ãö³¬¸ê®Æ®w¡A¤@¯ëªºÀ³¥Î³£¤£»İ­n­×§ï
+     // é—œé–‰è³‡æ–™åº«ï¼Œä¸€èˆ¬çš„æ‡‰ç”¨éƒ½ä¸éœ€è¦ä¿®æ”¹
      public void close() {
          db.close();
      }   
      
-     // ·s¼W°Ñ¼Æ«ü©wªºª«¥ó
+     // æ–°å¢åƒæ•¸æŒ‡å®šçš„ç‰©ä»¶
      public BMIObject insert(BMIObject item) {
-         // «Ø¥ß·Ç³Æ·s¼W¸ê®ÆªºContentValuesª«¥ó
+         // å»ºç«‹æº–å‚™æ–°å¢è³‡æ–™çš„ContentValuesç‰©ä»¶
          ContentValues cv = new ContentValues();     
   
-         // ¥[¤JContentValuesª«¥ó¥]¸Ëªº·s¼W¸ê®Æ
-         // ²Ä¤@­Ó°Ñ¼Æ¬OÄæ¦ì¦WºÙ¡A ²Ä¤G­Ó°Ñ¼Æ¬OÄæ¦ìªº¸ê®Æ
+         // åŠ å…¥ContentValuesç‰©ä»¶åŒ…è£çš„æ–°å¢è³‡æ–™
+         // ç¬¬ä¸€å€‹åƒæ•¸æ˜¯æ¬„ä½åç¨±ï¼Œ ç¬¬äºŒå€‹åƒæ•¸æ˜¯æ¬„ä½çš„è³‡æ–™
          cv.put(BMI_COLUMN, item.getBmi());
          cv.put(Height_COLUMN, item.getHeight());
          cv.put(Weight_COLUMN, item.getWeight());
@@ -56,19 +56,19 @@ public class BMIDAO {
          cv.put(DATETIME_COLUMN, item.getDate());
  
   
-         // ·s¼W¤@µ§¸ê®Æ¨Ã¨ú±o½s¸¹
-         // ²Ä¤@­Ó°Ñ¼Æ¬Oªí®æ¦WºÙ
-         // ²Ä¤G­Ó°Ñ¼Æ¬O¨S¦³«ü©wÄæ¦ì­Èªº¹w³]­È
-         // ²Ä¤T­Ó°Ñ¼Æ¬O¥]¸Ë·s¼W¸ê®ÆªºContentValuesª«¥ó
+         // æ–°å¢ä¸€ç­†è³‡æ–™ä¸¦å–å¾—ç·¨è™Ÿ
+         // ç¬¬ä¸€å€‹åƒæ•¸æ˜¯è¡¨æ ¼åç¨±
+         // ç¬¬äºŒå€‹åƒæ•¸æ˜¯æ²’æœ‰æŒ‡å®šæ¬„ä½å€¼çš„é è¨­å€¼
+         // ç¬¬ä¸‰å€‹åƒæ•¸æ˜¯åŒ…è£æ–°å¢è³‡æ–™çš„ContentValuesç‰©ä»¶
          long id = db.insert(TABLE_NAME, null, cv);
   
-         // ³]©w½s¸¹
+         // è¨­å®šç·¨è™Ÿ
          item.setId(id);
-         // ¦^¶Çµ²ªG
+         // å›å‚³çµæœ
          return item;
      }     
      
-     // Åª¨ú©Ò¦³°O¨Æ¸ê®Æ
+     // è®€å–æ‰€æœ‰è¨˜äº‹è³‡æ–™
      public List<BMIObject> getAll() {
          List<BMIObject> result = new ArrayList<>();
          Cursor cursor = db.query(
@@ -83,9 +83,9 @@ public class BMIDAO {
      }     
      
      
-     // §âCursor¥Ø«eªº¸ê®Æ¥]¸Ë¬°ª«¥ó
+     // æŠŠCursorç›®å‰çš„è³‡æ–™åŒ…è£ç‚ºç‰©ä»¶
      public BMIObject getRecord(Cursor cursor) {
-         // ·Ç³Æ¦^¶Çµ²ªG¥Îªºª«¥ó
+         // æº–å‚™å›å‚³çµæœç”¨çš„ç‰©ä»¶
     	 BMIObject result = new BMIObject();
   
          result.setId(cursor.getLong(0));
@@ -94,7 +94,7 @@ public class BMIDAO {
          result.setBmi(cursor.getFloat(3));
          result.setDate(cursor.getInt(4));
   
-         // ¦^¶Çµ²ªG
+         // å›å‚³çµæœ
          return result;
      }     
      
