@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advice_light">你/妳該多吃一點喔~!</string>
+    <string name="advice_average">體型很Fit喔!</string>
+    <string name="advice_heavy">該注意一下身體了!</string>
+</resources>
