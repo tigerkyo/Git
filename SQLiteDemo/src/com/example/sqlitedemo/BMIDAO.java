@@ -8,7 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class BMIDAO { //Test
+public class BMIDAO { //Test 123
 	
 	 public static final String TABLE_NAME = "BMI_Data";
      public static final String KEY_ID="_id";
